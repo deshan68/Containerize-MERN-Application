@@ -8,10 +8,11 @@ const User = require("./User");
 const app = express();
 app.use(cors());
 app.use(express.json());
+require("dotenv").config();
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/userDB")
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -46,5 +47,5 @@ app.post("/api/users", async (req, res) => {
 
 // Listen to port 5000
 app.listen(4000, () => {
-  console.log("Server is running on port 5000");
+  console.log("Server is running on port 4000");
 });
